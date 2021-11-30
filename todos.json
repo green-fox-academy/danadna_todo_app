@@ -1,0 +1,18 @@
+[
+    {
+        "task": "Kutyát sétáltatni",
+        "status": false
+    },
+    {
+        "task": "Tejet venni",
+        "status": true
+    },
+    {
+        "task": "Megcsinálni a leckét",
+        "status": true
+    },
+    {
+        "task": "Hörcsögöt megtanítani bukfencezni",
+        "status": false
+    }
+]
