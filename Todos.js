@@ -20,11 +20,14 @@ export default class Todos {
             this.removeTodo(this.args[1]);
         } else if (this.args.includes('-c')) {
             this.markDone(this.args[1]);
+        } else if (this.args == 0) {
+            this.printManual();
         } else {
             console.log('\nNem támogatott argumentum!');
             this.printManual();
         }
     }
+
     // fájl beolvasása
 
     getList() {
@@ -67,13 +70,12 @@ export default class Todos {
         let list = this.getList();
         let inputTask = input;
 
-        if (typeof (inputTask) === 'undefined') {
-            console.log("\nNem lehetséges új feladat hozzáadása: nincs megadva a feladat!");
+        if (inputTask.length == 0) {
+            console.log("\nNem lehetséges új feladat hozzáadása: nem adott meg feladatot!");
         } else {
             list.push(new Todo(inputTask));
-            console.log(list);
             fs.writeFileSync('todos.json', JSON.stringify(list, null, 4));
-            console.log(`${inputTask} hozzáadva!`);
+            console.log(`\n${inputTask} hozzáadva!`);
         }
         this.printTodos();
     }
@@ -87,9 +89,9 @@ export default class Todos {
         let list = this.getList();
         let inputNumber = parseInt(input);
 
-        if (isNaN(inputNumber) === true) {
+        if (typeof (input) === 'undefined') {
             console.log("\nNem lehetséges az eltávolítás: nem adott meg indexet!");
-        } else if (typeof (inputNumber) !== 'number') {
+        } else if (isNaN(inputNumber) === true) {
             console.log("\nNem lehetséges az eltávolítás: a megadott index nem szám!");
         } else if (inputNumber < 1 || list.length < inputNumber) {
             console.log("\nNem lehetséges az eltávolítás: túlindexelési probléma adódott!");
@@ -113,9 +115,9 @@ export default class Todos {
         let list = this.getList();
         let inputNumber = parseInt(input);
 
-        if (isNaN(inputNumber) === true) {
+        if (typeof (input) === 'undefined') {
             console.log("\nNem lehetséges a módosítás: nem adott meg indexet!");
-        } else if (typeof (inputNumber) !== 'number') {
+        } else if (isNaN(inputNumber) === true) {
             console.log("\nNem lehetséges a modosítás: a megadott index nem szám!");
         } else if (inputNumber < 1 || list.length < inputNumber) {
             console.log("\nNem lehetséges a módosítás: túlindexelési probléma adódott!");
